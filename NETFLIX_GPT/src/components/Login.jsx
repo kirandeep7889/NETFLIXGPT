@@ -5,6 +5,7 @@ import { auth } from "../utils/firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { mainBg, userAvatar } from "../utils/constants";
 
 export default function Login() {
   const navigate=useNavigate();
@@ -36,13 +37,11 @@ export default function Login() {
               password.current.value)
           .then((userCredential) => {
             const user = userCredential.user;
-            console.log(user);
             updateProfile(user, {
-              displayName: name.current.value, photoURL: "https://avatars.githubusercontent.com/u/124796483?v=4"
+              displayName: name.current.value, photoURL: userAvatar
             }).then(() => {
               const {uid,email,displayName,photoURL} = auth.currentUser;
               dispatch(addUser({ uid, email, displayName, photoURL })); 
-              navigate("/browse");
             }).catch((error) => {
               setErrorMessage(errorMessage)
             });
@@ -60,8 +59,6 @@ export default function Login() {
            .then((userCredential) => {
              // Signed in 
              const user = userCredential.user;
-             console.log(user)
-             navigate("/browse")
              // ...
            })
            .catch((error) => {
@@ -78,8 +75,7 @@ export default function Login() {
           <div >
             <Header/>
             <div className="absolute" >
-              <img 
-              src="https://assets.nflxext.com/ffe/siteui/vlv3/93da5c27-be66-427c-8b72-5cb39d275279/94eb5ad7-10d8-4cca-bf45-ac52e0a052c0/IN-en-20240226-popsignuptwoweeks-perspective_alpha_website_large.jpg"
+              <img  src={mainBg}
              ></img>
             </div>
             <form  onSubmit={(e)=>{e.preventDefault()}}
