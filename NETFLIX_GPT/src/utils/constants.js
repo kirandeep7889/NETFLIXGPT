@@ -14,3 +14,9 @@ export const mainBg="https://assets.nflxext.com/ffe/siteui/vlv3/93da5c27-be66-42
   
 
   export const IMG_CDN="https://image.tmdb.org/t/p/w780"
+
+
+  export const SUPPORTED_LANGUAGES=[{identifier: "en",name: "English"},
+                                    {identifier: "hindi",name: "Hindi"},
+                                    {identifier: "spanish",name: "Spanish"}                                       
+                                     ]
